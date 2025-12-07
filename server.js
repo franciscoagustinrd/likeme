@@ -52,7 +52,7 @@ app.post("/posts", async (req, res) => {
     const query = `
       INSERT INTO posts (titulo, img, descripcion, likes) 
       VALUES ($1, $2, $3, $4) 
-      RETURNING id, titulo, img as url, descripcion, likes  -- ← También transformar aquí
+      RETURNING id, titulo, img as url, descripcion, likes
     `;
     const values = [titulo, url, descripcion, 0];
     
@@ -108,6 +108,7 @@ app.delete("/posts/:id", async (req, res) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
+
 
 app.listen(3000, () => {
   console.log("Servidor corriendo en puerto 3000");
